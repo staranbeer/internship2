@@ -9,4 +9,7 @@
   .input {
     @apply border p-2;
   }
+  .heart-container .heart {
+    @apply active:scale-125;
+  }
 }
