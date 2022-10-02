@@ -1,14 +1,16 @@
-import React, { SetStateAction, useState } from "react";
+import { useContext, useState } from "react";
+import SearchContext from "./context/SearchContext";
 
-interface FormProps {
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  inputValue: string;
-  setInputValue: React.Dispatch<SetStateAction<string>>;
-}
-const Form = ({ handleSubmit, inputValue, setInputValue }: FormProps) => {
+const Form = () => {
   const [isFiltersopen, setIsFiltersOpen] = useState(false);
   const [isDateOpen, setisDateOpen] = useState(false);
   const [isKeywordsOpen, setIsKeywordsOpen] = useState(false);
+
+  const { formValues, setFormValues, handleSubmit } = useContext(SearchContext);
+
+  const handleChange = (property: string, value: string) => {
+    setFormValues(property, value);
+  };
 
   return (
     <form
@@ -19,8 +21,8 @@ const Form = ({ handleSubmit, inputValue, setInputValue }: FormProps) => {
       <div className="flex flex-col max-w-[560px] w-full gap-4">
         <input
           type="text"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          value={formValues.input}
+          onChange={(e) => handleChange("input", e.target.value)}
           className="input w-full max-w-[560px]"
           placeholder="Enter your query"
         />
@@ -56,9 +58,13 @@ const Form = ({ handleSubmit, inputValue, setInputValue }: FormProps) => {
                         id="start-date"
                         className="flex-1"
                         type="date"
-                        name="party"
+                        value={formValues.startYear}
+                        onChange={(e) =>
+                          handleChange("startYear", e.target.value)
+                        }
+                        name="startYear"
                         min="1958-04-01"
-                        max="2017-04-30"
+                        max="2022-04-30"
                       />
                     </div>
 
@@ -73,8 +79,12 @@ const Form = ({ handleSubmit, inputValue, setInputValue }: FormProps) => {
                         id="end-date"
                         className="flex-1"
                         type="date"
-                        name="party"
-                        min="2022-10-01"
+                        value={formValues.endYear}
+                        onChange={(e) =>
+                          handleChange("endYear", e.target.value)
+                        }
+                        name="endYear"
+                        min="1958-10-01"
                         max="2017-04-30"
                       />
                     </div>
@@ -91,39 +101,26 @@ const Form = ({ handleSubmit, inputValue, setInputValue }: FormProps) => {
                   Filter by Keywords
                 </button>
                 {isKeywordsOpen && (
-                  <div className="mt-4 flex flex-col gap-4 md:gap-8 sm:flex-row lg:flex-col">
-                    <div className="flex-1 gap-6 flex items-center">
-                      <label
-                        className="text-gray-300 font-bold"
-                        htmlFor="start-date"
-                      >
-                        Start Date
-                      </label>
-                      <input
-                        id="start-date"
-                        className="flex-1"
-                        type="date"
-                        name="party"
-                        min="1958-04-01"
-                        max="2017-04-30"
-                      />
-                    </div>
-
-                    <div className="flex-1 gap-6 flex items-center ">
-                      <label
-                        className="text-gray-300 font-bold"
-                        htmlFor="end-date"
-                      >
-                        End date
-                      </label>
-                      <input
-                        id="end-date"
-                        className="flex-1"
-                        type="date"
-                        name="party"
-                        min="2022-10-01"
-                        max="2017-04-30"
-                      />
+                  <div className="mt-4">
+                    <div className="flex flex-wrap gap-5">
+                      {["moon", "sun", "jupiter", "mars"].map((i) => {
+                        return (
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              handleChange("keyword", i);
+                            }}
+                            key={i}
+                            className={`${
+                              formValues.keyword === i
+                                ? "bg-pink-500"
+                                : "bg-gray-700"
+                            } btn`}
+                          >
+                            {i}
+                          </button>
+                        );
+                      })}
                     </div>
                   </div>
                 )}

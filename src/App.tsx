@@ -1,34 +1,11 @@
-import React, { useState } from "react";
 import Form from "./components/Form";
 import Main from "./components/Main/Main";
-import useFetch from "./hooks/useFetch";
-
-let SEARCH_URL = `https://images-api.nasa.gov/search?media_type=image&q=`;
 
 const App = () => {
-  const [inputValue, setInputValue] = useState("");
-  const [queryResponse, fetchData] = useFetch();
-
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
-    if (inputValue.trim().length == 0) {
-      return;
-    }
-
-    fetchData(SEARCH_URL + inputValue);
-    setInputValue("");
-  }
-
   return (
     <div className="flex flex-col h-screen lg:flex-row ">
-      <Form
-        inputValue={inputValue}
-        handleSubmit={handleSubmit}
-        setInputValue={setInputValue}
-      />
-
-      <Main cardList={queryResponse} />
+      <Form />
+      <Main />
     </div>
   );
 };

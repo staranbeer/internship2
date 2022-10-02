@@ -1,5 +1,5 @@
 import React from "react";
-import CardProps from "../index.types";
+import CardProps from "../../index.types";
 import { HiOutlineHeart } from "react-icons/hi";
 const Card = ({
   id,
