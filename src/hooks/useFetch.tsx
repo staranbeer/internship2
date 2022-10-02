@@ -16,7 +16,7 @@ const useFetch = () => {
     response
       .then((data) => data.json())
       // limiting the number of responses
-      .then((data) => data?.collection.items.slice(0, 2))
+      .then((data) => data?.collection.items.slice(0, 20))
       // data transformations
       .then((data) => {
         return data.map((item: any) => {

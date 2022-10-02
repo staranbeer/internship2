@@ -21,7 +21,7 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div className="flex flex-col h-screen lg:flex-row ">
       <Form
         inputValue={inputValue}
         handleSubmit={handleSubmit}

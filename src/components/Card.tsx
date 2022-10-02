@@ -10,17 +10,22 @@ const Card = ({
   isLiked = false,
 }: CardProps & { isLiked: boolean }) => {
   return (
-    <article className="cursor-pointer  ">
-      <div className="relative max-w-sm aspect-square rounded-xl overflow-hidden">
+    <article className="cursor-pointer w-full  ">
+      <div className="relative max-w-sm aspect-square rounded-xl overflow-hidden mx-auto">
         <img src={image} alt="" className=" w-full h-full object-cover" />
-        <button className=" w-12 h-12 place-items-center grid absolute right-4 bottom-4 bg-white rounded-full">
-          <HiOutlineHeart
-            className="heart transition-all active:scale-125"
-            size={28}
-            fill={`${isLiked ? "red" : "gray"}`}
-            stroke={`${isLiked ? "red" : "gray"}`}
-          />
-        </button>
+        <div className="w-full  absolute bottom-3 flex justify-between items-center px-5 ">
+          <div className="bg-[#16181d] text-white font-bold px-5 py-1 rounded-md">
+            {new Date(Date.parse(dateCreated)).toLocaleDateString()}
+          </div>
+          <button className="heart-container w-12 h-12 grid place-items-center bg-[#16181d] rounded-full">
+            <HiOutlineHeart
+              className="heart transition-all"
+              size={28}
+              fill={`${isLiked ? "red" : "#f3f3f3"}`}
+              stroke={`${isLiked ? "red" : "#f3f3f3"}`}
+            />
+          </button>
+        </div>
       </div>
     </article>
   );
