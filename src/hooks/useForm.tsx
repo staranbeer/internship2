@@ -16,7 +16,6 @@ const useForm = () => {
     });
   };
 
-  console.log(formValues);
   return [formValues, setFormValues] as const;
 };
 

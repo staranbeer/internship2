@@ -33,7 +33,7 @@ const Form = () => {
             className="text-white font-bold btn-secondary btn self-start"
             onClick={() => setIsFiltersOpen((i) => !i)}
           >
-            Enable filters
+            Show filters
           </button>
           {isFiltersopen && (
             <>
@@ -108,7 +108,11 @@ const Form = () => {
                           <button
                             type="button"
                             onClick={(e) => {
-                              handleChange("keyword", i);
+                              if (formValues.keyword === i) {
+                                handleChange("keyword", "");
+                              } else {
+                                handleChange("keyword", i);
+                              }
                             }}
                             key={i}
                             className={`${
