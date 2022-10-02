@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 
 const useFetch = () => {
   const [queryResponse, setQueryResponse] = useState<any>([]);
@@ -9,8 +9,6 @@ const useFetch = () => {
    * @param URL URL to fetch data from
    * */
   const fetchData = useCallback(async (siteURL: string) => {
-    console.log(siteURL);
-
     let response = fetch(siteURL);
 
     response

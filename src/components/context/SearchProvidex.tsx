@@ -39,9 +39,9 @@ const SearchProvidex = ({ children }: { children: ReactNode }) => {
     } else {
       keywordQuery = "";
     }
-
     fetchData(SEARCH_URL + inputQuery + dateQuery + keywordQuery);
   }
+
   return (
     <SearchContext.Provider
       value={{

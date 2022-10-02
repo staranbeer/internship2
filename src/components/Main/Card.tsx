@@ -1,14 +1,18 @@
-import React from "react";
 import CardProps from "../../index.types";
 import { HiOutlineHeart } from "react-icons/hi";
+import { useContext } from "react";
+import SearchContext from "../context/SearchContext";
+
 const Card = ({
   id,
   title,
   description,
   image,
   dateCreated,
-  isLiked = false,
-}: CardProps & { isLiked: boolean }) => {
+  isLiked,
+  setLiked,
+}: CardProps & { isLiked: boolean; setLiked: (value: string) => void }) => {
+  const { queryString } = useContext(SearchContext);
   return (
     <article className="cursor-pointer w-full  ">
       <div className="relative max-w-sm aspect-square rounded-xl overflow-hidden mx-auto">
@@ -17,7 +21,12 @@ const Card = ({
           <div className="bg-[#16181d] text-white font-bold px-5 py-1 rounded-md">
             {new Date(Date.parse(dateCreated)).toLocaleDateString()}
           </div>
-          <button className="heart-container w-12 h-12 grid place-items-center bg-[#16181d] rounded-full">
+          <button
+            onClick={() => {
+              setLiked(id);
+            }}
+            className="heart-container w-12 h-12 grid place-items-center bg-[#16181d] rounded-full"
+          >
             <HiOutlineHeart
               className="heart transition-all"
               size={28}
