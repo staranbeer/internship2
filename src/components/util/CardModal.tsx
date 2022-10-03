@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { HiOutlineHeart } from "react-icons/hi";
+import { HiOutlineHeart, HiOutlineX } from "react-icons/hi";
 import Modal from "./Modal";
 interface CardModalProps {
   title: string;
@@ -30,22 +30,12 @@ const CardModal = ({
     <Modal onClose={onClose} isOpen={isOpen}>
       <div className="flex justify-between items-center ">
         <h2 className="font-bold text-lg">{title}</h2>
-        <button
-          onClick={() => {
-            setLiked(id);
-          }}
-          className="heart-container shrink-0 w-10 h-10 grid place-items-center bg-[#16181d] rounded-full"
-        >
-          <HiOutlineHeart
-            className="heart transition-all"
-            size={24}
-            fill={`${isLiked ? "red" : "#f3f3f3"}`}
-            stroke={`${isLiked ? "red" : "#f3f3f3"}`}
-          />
+        <button>
+          <HiOutlineX size={24} onClick={onClose} />
         </button>
       </div>
 
-      <div className="my-5 rounded-xl overflow-hidden">
+      <div className="my-5 rounded-xl overflow-hidden aspect-square">
         <img src={image} alt={title} className="w-full h-full object-cover" />
       </div>
       <div className="inline-block font-bold  py-1 rounded-md">
@@ -68,7 +58,7 @@ const CardModal = ({
           </button>
         )}
       </div>
-      <div>
+      <div className="flex items-center justify-between">
         <a
           href={image}
           download
@@ -77,6 +67,20 @@ const CardModal = ({
         >
           Download Image
         </a>
+
+        <button
+          onClick={() => {
+            setLiked(id);
+          }}
+          className="heart-container shrink-0 w-10 h-10 grid place-items-center bg-[#16181d] rounded-full"
+        >
+          <HiOutlineHeart
+            className="heart transition-all"
+            size={24}
+            fill={`${isLiked ? "red" : "#f3f3f3"}`}
+            stroke={`${isLiked ? "red" : "#f3f3f3"}`}
+          />
+        </button>
       </div>
     </Modal>
   );
