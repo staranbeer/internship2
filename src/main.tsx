@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import SearchProvidex from "./components/context/SearchProvidex";
+import SearchProvidex from "./context/SearchProvidex";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(

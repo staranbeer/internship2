@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import SearchContext from "./context/SearchContext";
+import SearchContext from "../context/SearchContext";
 
 const Form = () => {
   const [isFiltersopen, setIsFiltersOpen] = useState(false);

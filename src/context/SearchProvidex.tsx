@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
-import useFetch from "../../hooks/useFetch";
-import useForm from "../../hooks/useForm";
+import useFetch from "../hooks/useFetch";
+import useForm from "../hooks/useForm";
 import SearchContext from "./SearchContext";
 
 let SEARCH_URL = `https://images-api.nasa.gov/search?media_type=image&q=`;
